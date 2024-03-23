@@ -1,0 +1,7 @@
+.LoadingHopper {
+  display: flex;
+  justify-content: space-around;
+}
+.materialLoading {
+  padding-top: 100px;
+}
