@@ -3,7 +3,9 @@ import { useState } from "react";
 const LoadingHopper = ({ loadingElem }) => {
   const maximumLoad = 1000;
   console.log(loadingElem);
-  const { loading, setLoading } = useState(0);
+
+  // console.log(loa);
+  let lod = loadingElem;
 
   return (
     <div className="LoadingHopper">
@@ -26,13 +28,13 @@ const LoadingHopper = ({ loadingElem }) => {
       </div>
       <div className="materialLoading">
         <p>
-          {loading}/{maximumLoad}
+          {lod}/{maximumLoad}
         </p>
-        <span>
+        {/* <span>
           {maximumLoad > loading
             ? "бункер может принимать материал"
             : " бункер полон можно начать выгрузку"}
-        </span>
+        </span> */}
       </div>
     </div>
   );

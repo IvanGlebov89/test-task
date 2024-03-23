@@ -11,10 +11,9 @@ const Material = ({
   const handleIncrement = (nameEl) => {
     setCount((prevState) => prevState + 1);
     if (count < 1000) {
-      console.log(nameEl, count);
       onIncrementLoad(count);
     } else {
-      console.log(count);
+      console.log("Начать выгрузку");
     }
   };
   return (
