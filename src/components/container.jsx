@@ -7,7 +7,7 @@ const Container = () => {
   const [data, setData] = useState(substances);
   const [load, setLoad] = useState(0);
 
-  const incrementLoad = (el) => {
+  const incrementLoad = (el, elName) => {
     setLoad(el);
   };
 

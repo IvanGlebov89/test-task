@@ -7,6 +7,7 @@ const Material = ({
   dataId,
   onIncrementLoad,
 }) => {
+  let isLoadingMaterial = false;
   const [count, setCount] = useState(dataValue);
   const handleIncrement = (nameEl) => {
     setCount((prevState) => prevState + 100);
@@ -16,6 +17,7 @@ const Material = ({
       console.log("Начать выгрузку");
     }
   };
+
   return (
     <div className="material-box">
       <div id={dataId}>
@@ -67,7 +69,12 @@ const Material = ({
             </g>
           </svg>
         </span>
-        <button onClick={() => handleIncrement(dataName)}>
+        <button
+          id={dataId}
+          className={"btn btn-outline-primary btn-lg"}
+          disabled={dataId.dataId === dataId ? false : true}
+          onClick={() => handleIncrement(dataId)}
+        >
           начать загрузку материала
         </button>
       </div>

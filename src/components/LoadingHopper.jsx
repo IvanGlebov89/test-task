@@ -1,5 +1,4 @@
 import "./LoadingHopper.css";
-import { useState } from "react";
 const LoadingHopper = ({ loadingElem }) => {
   const maximumLoad = 900;
   console.log(loadingElem);
