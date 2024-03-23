@@ -9,8 +9,8 @@ const Material = ({
 }) => {
   const [count, setCount] = useState(dataValue);
   const handleIncrement = (nameEl) => {
-    setCount((prevState) => prevState + 1);
-    if (count < 1000) {
+    setCount((prevState) => prevState + 100);
+    if (count < 1100) {
       onIncrementLoad(count);
     } else {
       console.log("Начать выгрузку");
