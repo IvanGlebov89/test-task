@@ -1,11 +1,18 @@
 import { useState } from "react";
 import "./material.css";
-const Material = ({ dataName, dataValue, dataColor, dataId }) => {
+const Material = ({
+  dataName,
+  dataValue,
+  dataColor,
+  dataId,
+  onIncrementLoad,
+}) => {
   const [count, setCount] = useState(dataValue);
   const handleIncrement = (nameEl) => {
     setCount((prevState) => prevState + 1);
     if (count < 1000) {
       console.log(nameEl, count);
+      onIncrementLoad(count);
     } else {
       console.log(count);
     }

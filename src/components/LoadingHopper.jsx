@@ -1,7 +1,10 @@
 import "./LoadingHopper.css";
-const LoadingHopper = () => {
+import { useState } from "react";
+const LoadingHopper = ({ loadingElem }) => {
   const maximumLoad = 1000;
-  let loading = 0;
+  console.log(loadingElem);
+  const { loading, setLoading } = useState(0);
+
   return (
     <div className="LoadingHopper">
       <div>
