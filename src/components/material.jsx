@@ -8,14 +8,16 @@ const Material = ({
   onIncrementLoad,
   isAktiv,
   btnAc,
+  materialWeight,
 }) => {
-  const [count, setCount] = useState(dataValue);
+  const [count, setCount] = useState(materialWeight);
   const handleIncrement = (nameEl) => {
     isAktiv(nameEl);
-    setCount((prevState) => prevState + 100);
-    if (count < 1100) {
+    setCount((prevState) => prevState + dataValue);
+    if (count <= 1000) {
       onIncrementLoad(count);
-    } else {
+    } else if (count >= 1000) {
+      setCount(materialWeight);
       console.log("Начать выгрузку");
     }
   };

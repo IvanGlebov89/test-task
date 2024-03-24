@@ -5,7 +5,8 @@ import substances from "../substances/substances.js";
 import { useState } from "react";
 const Container = () => {
   const [data, setData] = useState(substances);
-
+  const [materialWeight, setMaterialWeight] = useState(100);
+  console.log(materialWeight);
   const [load, setLoad] = useState(0);
   const incrementLoad = (el, elName) => {
     setLoad(el);
@@ -21,6 +22,7 @@ const Container = () => {
   };
   const returnState = () => {
     setLoad(0);
+    setMaterialWeight(100);
     data.forEach((d) => {
       if (d.btnActive === true) {
         d.btnActive = false;
@@ -38,6 +40,7 @@ const Container = () => {
           dataColor={dat.color}
           dataId={dat.id}
           btnAc={dat.btnActive}
+          materialWeight={materialWeight}
           onIncrementLoad={incrementLoad}
           isAktiv={isAktiv}
         />
