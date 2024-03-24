@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./material.css";
 const Material = ({
   dataName,
@@ -13,6 +13,7 @@ const Material = ({
   const [count, setCount] = useState(materialWeight);
   const handleIncrement = (nameEl) => {
     isAktiv(nameEl);
+
     setCount((prevState) => prevState + dataValue);
     if (count <= 1000) {
       onIncrementLoad(count);

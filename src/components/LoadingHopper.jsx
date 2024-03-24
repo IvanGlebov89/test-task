@@ -1,8 +1,11 @@
 import "./LoadingHopper.css";
-const LoadingHopper = ({ loadingElem, onUnload }) => {
-  const maximumLoad = 1000;
+
+const LoadingHopper = ({ loadingElem, onUnload, maximumLoad }) => {
   console.log(loadingElem);
+  let maxLoad = maximumLoad;
+  console.log(maxLoad);
   let lod = loadingElem;
+
   const comparison = () => {
     if (maximumLoad > lod) {
       return "бункер может принимать материал";
@@ -42,7 +45,7 @@ const LoadingHopper = ({ loadingElem, onUnload }) => {
       </div>
       <div className="materialLoading">
         <p>
-          {lod}/{maximumLoad}
+          {lod}/{maxLoad}
         </p>
         <span>{comparison()}</span>
       </div>
