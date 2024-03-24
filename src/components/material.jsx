@@ -6,13 +6,13 @@ const Material = ({
   dataColor,
   dataId,
   onIncrementLoad,
-  isAktiv,
+  isAсtiv,
   btnAc,
   materialWeight,
 }) => {
   const [count, setCount] = useState(materialWeight);
   const handleIncrement = (nameEl) => {
-    isAktiv(nameEl);
+    isAсtiv(nameEl);
 
     setCount((prevState) => prevState + dataValue);
     if (count <= 1000) {

@@ -12,7 +12,7 @@ const Container = () => {
     setLoad(el);
   };
 
-  const isAktiv = (id) => {
+  const isAсtiv = (id) => {
     data.forEach((d) => {
       if (d.id !== id) {
         d.btnActive = true;
@@ -41,7 +41,7 @@ const Container = () => {
           btnAc={dat.btnActive}
           materialWeight={load}
           onIncrementLoad={incrementLoad}
-          isAktiv={isAktiv}
+          isAсtiv={isAсtiv}
         />
       ))}
 
