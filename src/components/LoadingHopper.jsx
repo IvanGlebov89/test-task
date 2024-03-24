@@ -1,10 +1,25 @@
 import "./LoadingHopper.css";
-const LoadingHopper = ({ loadingElem }) => {
-  const maximumLoad = 900;
+const LoadingHopper = ({ loadingElem, onUnload }) => {
+  const maximumLoad = 1000;
   console.log(loadingElem);
-
-  // console.log(loa);
   let lod = loadingElem;
+  const comparison = () => {
+    if (maximumLoad > lod) {
+      return "бункер может принимать материал";
+    } else if (maximumLoad === lod) {
+      return "бункер полон можно начать выгрузку";
+    } else if (lod > maximumLoad) {
+      return "нужно выгрузить материал";
+    }
+  };
+
+  const unloadMaterial = () => {
+    if (lod > maximumLoad) {
+      return "btn btn-danger disabled";
+    } else if (lod === maximumLoad) {
+      return "btn btn-danger ";
+    }
+  };
 
   return (
     <div className="LoadingHopper">
@@ -29,11 +44,12 @@ const LoadingHopper = ({ loadingElem }) => {
         <p>
           {lod}/{maximumLoad}
         </p>
-        <span>
-          {maximumLoad > lod
-            ? "бункер может принимать материал"
-            : " бункер полон можно начать выгрузку"}
-        </span>
+        <span>{comparison()}</span>
+      </div>
+      <div>
+        <button type="button" className={unloadMaterial()} onClick={onUnload}>
+          unload
+        </button>
       </div>
     </div>
   );

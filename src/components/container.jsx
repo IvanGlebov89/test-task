@@ -5,10 +5,27 @@ import substances from "../substances/substances.js";
 import { useState } from "react";
 const Container = () => {
   const [data, setData] = useState(substances);
-  const [load, setLoad] = useState(0);
 
+  const [load, setLoad] = useState(0);
   const incrementLoad = (el, elName) => {
     setLoad(el);
+  };
+
+  const isAktiv = (id) => {
+    console.log(id);
+    data.forEach((d) => {
+      if (d.id !== id) {
+        d.btnActive = true;
+      }
+    });
+  };
+  const returnState = () => {
+    setLoad(0);
+    data.forEach((d) => {
+      if (d.btnActive === true) {
+        d.btnActive = false;
+      }
+    });
   };
 
   return (
@@ -20,11 +37,13 @@ const Container = () => {
           dataValue={dat.quantity}
           dataColor={dat.color}
           dataId={dat.id}
+          btnAc={dat.btnActive}
           onIncrementLoad={incrementLoad}
+          isAktiv={isAktiv}
         />
       ))}
 
-      <LoadingHopper loadingElem={load} />
+      <LoadingHopper loadingElem={load} onUnload={returnState} />
     </div>
   );
 };

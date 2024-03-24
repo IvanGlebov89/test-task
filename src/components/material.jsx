@@ -6,10 +6,12 @@ const Material = ({
   dataColor,
   dataId,
   onIncrementLoad,
+  isAktiv,
+  btnAc,
 }) => {
-  let isLoadingMaterial = false;
   const [count, setCount] = useState(dataValue);
   const handleIncrement = (nameEl) => {
+    isAktiv(nameEl);
     setCount((prevState) => prevState + 100);
     if (count < 1100) {
       onIncrementLoad(count);
@@ -70,9 +72,9 @@ const Material = ({
           </svg>
         </span>
         <button
-          id={dataId}
-          className={"btn btn-outline-primary btn-lg"}
-          disabled={dataId.dataId === dataId ? false : true}
+          type="button"
+          className={"btn btn-primary btn-lg m-2"}
+          disabled={btnAc}
           onClick={() => handleIncrement(dataId)}
         >
           начать загрузку материала
