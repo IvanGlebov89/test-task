@@ -31,7 +31,11 @@ const LoadingHopper = ({ materialWeight, onBunkerUnloading }) => {
         <p>
           {transferredWeight}/{maximumLoad}
         </p>
-        <span></span>
+        <span>
+          {transferredWeight < maximumLoad
+            ? "бункер может принимать материал"
+            : "бункер полн, начать отгрузку"}
+        </span>
       </div>
       <div>
         <button

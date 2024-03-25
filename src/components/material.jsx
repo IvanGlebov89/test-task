@@ -6,7 +6,6 @@ const Material = ({
   materialId,
   btnActive,
   onLoadingMaterial,
-  selectedMaterial,
 }) => {
   return (
     <div className="material-box">
@@ -62,7 +61,7 @@ const Material = ({
         <button
           type="button"
           className={"btn btn-primary btn-lg m-2"}
-          disabled={selectedMaterial}
+          disabled={btnActive}
           onClick={() => onLoadingMaterial(materialId, materialQuantity)}
         >
           начать загрузку материала

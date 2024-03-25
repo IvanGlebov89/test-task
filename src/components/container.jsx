@@ -7,12 +7,16 @@ const Container = () => {
   const [data, setData] = useState(substances);
   const [materialWeight, setMaterialWeight] = useState(0);
   const reset = 0;
-  let selectedMaterial = false;
+
   const onLoadingMaterial = (id, weight) => {
-    data.find((el) =>
-      el.id !== id ? (selectedMaterial = true) : (selectedMaterial = false)
-    );
-    console.log(id);
+    data.forEach((el) => {
+      if (el.id !== id) {
+        return (el.btnActive = true);
+      } else {
+        return (el.btnActive = false);
+      }
+    });
+
     if (materialWeight < 1000) {
       setMaterialWeight((prevState) => prevState + weight);
     } else {
@@ -20,10 +24,11 @@ const Container = () => {
     }
   };
   const onBunkerUnloading = (transferredWeight, maximumLoad) => {
-    console.log(transferredWeight, maximumLoad);
     if (transferredWeight === maximumLoad) {
+      data.forEach((el) => (el.btnActive = false));
       setMaterialWeight(reset);
     }
+    return;
   };
   return (
     <div className="container">
@@ -35,7 +40,6 @@ const Container = () => {
           color={dat.color}
           materialId={dat.id}
           btnActive={dat.btnActive}
-          selectedMaterial={selectedMaterial}
           onLoadingMaterial={onLoadingMaterial}
         />
       ))}
