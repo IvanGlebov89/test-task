@@ -62,7 +62,9 @@ const Material = ({
           type="button"
           className={"btn btn-primary btn-lg m-2"}
           disabled={btnActive}
-          onClick={() => onLoadingMaterial(materialId, materialQuantity)}
+          onClick={() =>
+            onLoadingMaterial(materialId, materialQuantity, materialName)
+          }
         >
           начать загрузку материала
         </button>

@@ -1,6 +1,6 @@
 import "./LoadingHopper.css";
 
-const LoadingHopper = ({ materialWeight, onBunkerUnloading }) => {
+const LoadingHopper = ({ materialWeight, onBunkerUnloading, materialName }) => {
   const maximumLoad = 1000;
   let transferredWeight = materialWeight;
   const disabledAndActive = () => {
@@ -28,6 +28,7 @@ const LoadingHopper = ({ materialWeight, onBunkerUnloading }) => {
         </svg>
       </div>
       <div className="materialLoading">
+        <h1>{materialName}</h1>
         <p>
           {transferredWeight}/{maximumLoad}
         </p>

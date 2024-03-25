@@ -7,8 +7,11 @@ const Container = () => {
   const [data, setData] = useState(substances);
   const [materialWeight, setMaterialWeight] = useState(0);
   const reset = 0;
-
-  const onLoadingMaterial = (id, weight) => {
+  const [materialName, setMaterialName] = useState("");
+  // блокировка кнопок и загрузка нужного материала
+  const onLoadingMaterial = (id, weight, elName) => {
+    setMaterialName(elName);
+    console.log(materialName);
     data.forEach((el) => {
       if (el.id !== id) {
         return (el.btnActive = true);
@@ -23,10 +26,12 @@ const Container = () => {
       return;
     }
   };
+  // разгрузка бункера
   const onBunkerUnloading = (transferredWeight, maximumLoad) => {
     if (transferredWeight === maximumLoad) {
       data.forEach((el) => (el.btnActive = false));
       setMaterialWeight(reset);
+      setMaterialName("");
     }
     return;
   };
@@ -45,6 +50,7 @@ const Container = () => {
       ))}
 
       <LoadingHopper
+        materialName={materialName}
         materialWeight={materialWeight}
         onBunkerUnloading={onBunkerUnloading}
       />
