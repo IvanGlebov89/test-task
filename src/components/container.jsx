@@ -1,54 +1,48 @@
+import { useState } from "react";
 import LoadingHopper from "./LoadingHopper";
 import Material from "./material";
 import "./container.css";
 import substances from "../substances/substances.js";
-import { useState } from "react";
 const Container = () => {
   const [data, setData] = useState(substances);
-
-  const [load, setLoad] = useState(0);
-  const maximumLoad = 1000;
-  const incrementLoad = (el, elName) => {
-    setLoad(el);
+  const [materialWeight, setMaterialWeight] = useState(0);
+  const reset = 0;
+  let selectedMaterial = false;
+  const onLoadingMaterial = (id, weight) => {
+    data.find((el) =>
+      el.id !== id ? (selectedMaterial = true) : (selectedMaterial = false)
+    );
+    console.log(id);
+    if (materialWeight < 1000) {
+      setMaterialWeight((prevState) => prevState + weight);
+    } else {
+      return;
+    }
   };
-
-  const isAсtiv = (id) => {
-    data.forEach((d) => {
-      if (d.id !== id) {
-        d.btnActive = true;
-      }
-    });
+  const onBunkerUnloading = (transferredWeight, maximumLoad) => {
+    console.log(transferredWeight, maximumLoad);
+    if (transferredWeight === maximumLoad) {
+      setMaterialWeight(reset);
+    }
   };
-  const returnState = () => {
-    setLoad(0);
-
-    data.forEach((d) => {
-      if (d.btnActive === true) {
-        d.btnActive = false;
-      }
-    });
-  };
-
   return (
     <div className="container">
       {data.map((dat) => (
         <Material
-          key={dat}
-          dataName={dat.name}
-          dataValue={dat.quantity}
-          dataColor={dat.color}
-          dataId={dat.id}
-          btnAc={dat.btnActive}
-          materialWeight={load}
-          onIncrementLoad={incrementLoad}
-          isAсtiv={isAсtiv}
+          key={dat.id}
+          materialName={dat.name}
+          materialQuantity={dat.quantity}
+          color={dat.color}
+          materialId={dat.id}
+          btnActive={dat.btnActive}
+          selectedMaterial={selectedMaterial}
+          onLoadingMaterial={onLoadingMaterial}
         />
       ))}
 
       <LoadingHopper
-        loadingElem={load}
-        onUnload={returnState}
-        maximumLoad={maximumLoad}
+        materialWeight={materialWeight}
+        onBunkerUnloading={onBunkerUnloading}
       />
     </div>
   );

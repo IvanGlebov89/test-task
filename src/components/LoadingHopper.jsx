@@ -1,29 +1,13 @@
 import "./LoadingHopper.css";
 
-const LoadingHopper = ({ loadingElem, onUnload, maximumLoad }) => {
-  console.log(loadingElem);
-  let maxLoad = maximumLoad;
-  console.log(maxLoad);
-  let lod = loadingElem;
-
-  const comparison = () => {
-    if (maximumLoad > lod) {
-      return "бункер может принимать материал";
-    } else if (maximumLoad === lod) {
-      return "бункер полон можно начать выгрузку";
-    } else if (lod > maximumLoad) {
-      return "нужно выгрузить материал";
-    }
+const LoadingHopper = ({ materialWeight, onBunkerUnloading }) => {
+  const maximumLoad = 1000;
+  let transferredWeight = materialWeight;
+  const disabledAndActive = () => {
+    return transferredWeight < maximumLoad
+      ? "btn btn-danger btn-lg disabled"
+      : "btn btn-danger btn-lg";
   };
-
-  const unloadMaterial = () => {
-    if (lod > maximumLoad) {
-      return "btn btn-danger disabled";
-    } else if (lod === maximumLoad) {
-      return "btn btn-danger ";
-    }
-  };
-
   return (
     <div className="LoadingHopper">
       <div>
@@ -45,12 +29,16 @@ const LoadingHopper = ({ loadingElem, onUnload, maximumLoad }) => {
       </div>
       <div className="materialLoading">
         <p>
-          {lod}/{maxLoad}
+          {transferredWeight}/{maximumLoad}
         </p>
-        <span>{comparison()}</span>
+        <span></span>
       </div>
       <div>
-        <button type="button" className={unloadMaterial()} onClick={onUnload}>
+        <button
+          type="button"
+          className={disabledAndActive()}
+          onClick={() => onBunkerUnloading(transferredWeight, maximumLoad)}
+        >
           unload
         </button>
       </div>

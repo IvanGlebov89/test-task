@@ -1,33 +1,18 @@
-import { useState, useEffect } from "react";
 import "./material.css";
 const Material = ({
-  dataName,
-  dataValue,
-  dataColor,
-  dataId,
-  onIncrementLoad,
-  isAсtiv,
-  btnAc,
-  materialWeight,
+  color,
+  materialName,
+  materialQuantity,
+  materialId,
+  btnActive,
+  onLoadingMaterial,
+  selectedMaterial,
 }) => {
-  const [count, setCount] = useState(materialWeight);
-  const handleIncrement = (nameEl) => {
-    isAсtiv(nameEl);
-
-    setCount((prevState) => prevState + dataValue);
-    if (count <= 1000) {
-      onIncrementLoad(count);
-    } else if (count >= 1000) {
-      setCount(materialWeight);
-      console.log("Начать выгрузку");
-    }
-  };
-
   return (
     <div className="material-box">
-      <div id={dataId}>
-        <h2>{dataName}</h2>
-        <span>{dataValue}</span>
+      <div id={materialId}>
+        <h2>{materialName}</h2>
+        <span>{materialQuantity}</span>
         <span>
           <svg
             width="50px"
@@ -49,7 +34,7 @@ const Material = ({
             <g id="SVGRepo_iconCarrier">
               <path
                 d="M677.3 286H295.2c-8.3 0-15 6.7-15 15v582c0 8.3 6.7 15 15 15H419l273.3-273.3V301c0-8.3-6.7-15-15-15z m-47.5 240.9c0 6.6-5.4 12-12 12H354.7c-6.6 0-12-5.4-12-12v-35.7c0-6.6 5.4-12 12-12h263.1c6.6 0 12 5.4 12 12v35.7z m0-117.5c0 6.6-5.4 12-12 12H354.7c-6.6 0-12-5.4-12-12v-35.7c0-6.6 5.4-12 12-12h263.1c6.6 0 12 5.4 12 12v35.7zM556.9 898l135.4-135.4v-95.5L461.4 898zM677.3 898c8.3 0 15-6.7 15-15v-78l-93 93h78z"
-                fill={dataColor}
+                fill={color}
               />
 
               <path
@@ -77,8 +62,8 @@ const Material = ({
         <button
           type="button"
           className={"btn btn-primary btn-lg m-2"}
-          disabled={btnAc}
-          onClick={() => handleIncrement(dataId)}
+          disabled={selectedMaterial}
+          onClick={() => onLoadingMaterial(materialId, materialQuantity)}
         >
           начать загрузку материала
         </button>
