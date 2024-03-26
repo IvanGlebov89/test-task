@@ -8,7 +8,7 @@ const Container = () => {
   const [materialWeight, setMaterialWeight] = useState(0);
   const reset = 0;
   const [materialName, setMaterialName] = useState("");
-  // const [el, setEl] = useState(0);
+
   // блокировка кнопок и загрузка нужного материала
 
   const onLoadingMaterial = (id, weight, elName, stop) => {
