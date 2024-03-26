@@ -23,8 +23,6 @@ const Container = () => {
     if (materialWeight < 1000) {
       setMaterialWeight((prevState) => prevState + weight);
     }
-    console.log(materialWeight);
-    // interval(weight, stop);
   };
 
   useEffect(() => {
@@ -35,10 +33,25 @@ const Container = () => {
           setMaterialWeight((prevState) => prevState + weight);
         }
         return clearInterval(intervalId);
-      }, 1000);
+      }, 500);
     }
   }, [materialWeight]);
   // разгрузка бункера
+
+  useEffect(() => {
+    if (materialWeight === 1000) {
+      setData((prevData) =>
+        prevData.map((d) => {
+          if (d.btnActive === true) {
+            return { ...d, btnActive: false };
+          }
+          return d;
+        })
+      );
+      setMaterialWeight(reset);
+      setMaterialName("");
+    }
+  }, [materialWeight]);
   const onBunkerUnloading = (transferredWeight, maximumLoad) => {
     if (transferredWeight === maximumLoad) {
       data.forEach((el) => (el.btnActive = false));
