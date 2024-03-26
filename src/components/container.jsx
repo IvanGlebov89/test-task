@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoadingHopper from "./LoadingHopper";
 import Material from "./material";
 import "./container.css";
@@ -8,10 +8,11 @@ const Container = () => {
   const [materialWeight, setMaterialWeight] = useState(0);
   const reset = 0;
   const [materialName, setMaterialName] = useState("");
+  // const [el, setEl] = useState(0);
   // блокировка кнопок и загрузка нужного материала
-  const onLoadingMaterial = (id, weight, elName) => {
+
+  const onLoadingMaterial = (id, weight, elName, stop) => {
     setMaterialName(elName);
-    console.log(materialName);
     data.forEach((el) => {
       if (el.id !== id) {
         return (el.btnActive = true);
@@ -20,12 +21,28 @@ const Container = () => {
       }
     });
 
-    if (materialWeight < 1000) {
-      setMaterialWeight((prevState) => prevState + weight);
-    } else {
-      return;
-    }
+    interval(weight, stop);
   };
+  const interval = (item, stop) => {
+    const int = setInterval(() => {
+      setMaterialWeight((prevState) => prevState + item);
+      let i = 100 + item;
+      console.log(i);
+      if (i === 1000) {
+        return clearInterval(int);
+      }
+    }, 2000);
+  };
+
+  // useEffect(() => {
+  //   const weight = 100;
+  //   const intervalId = setInterval(() => {
+  //     setMaterialWeight((prevState) => prevState + weight);
+  //     if (materialWeight === 1000) {
+  //       return clearInterval(intervalId);
+  //     }
+  //   }, 2000);
+  // }, [materialWeight]);
   // разгрузка бункера
   const onBunkerUnloading = (transferredWeight, maximumLoad) => {
     if (transferredWeight === maximumLoad) {
@@ -46,6 +63,7 @@ const Container = () => {
           materialId={dat.id}
           btnActive={dat.btnActive}
           onLoadingMaterial={onLoadingMaterial}
+          materialWeight={materialWeight}
         />
       ))}
 

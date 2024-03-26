@@ -11,8 +11,7 @@ const LoadingHopper = ({ materialWeight, onBunkerUnloading, materialName }) => {
   return (
     <div className="LoadingHopper">
       <div>
-        <h1>LoadingHopper</h1>
-
+        <h1>Загрузочный бункер</h1>
         <svg
           width="400px"
           height="300px"
@@ -27,6 +26,7 @@ const LoadingHopper = ({ materialWeight, onBunkerUnloading, materialName }) => {
           />
         </svg>
       </div>
+
       <div className="materialLoading">
         <h1>{materialName}</h1>
         <p>
