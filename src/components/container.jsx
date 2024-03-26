@@ -20,18 +20,23 @@ const Container = () => {
         return (el.btnActive = false);
       }
     });
-
+    if (materialWeight < 1000) {
+      setMaterialWeight((prevState) => prevState + weight);
+    }
+    console.log(materialWeight);
     // interval(weight, stop);
   };
 
   useEffect(() => {
     const weight = 100;
-    const intervalId = setInterval(() => {
-      if (materialWeight < 1000) {
-        setMaterialWeight((prevState) => prevState + weight);
-      }
-      return clearInterval(intervalId);
-    }, 1000);
+    if (materialWeight !== 0) {
+      const intervalId = setInterval(() => {
+        if (materialWeight < 1000) {
+          setMaterialWeight((prevState) => prevState + weight);
+        }
+        return clearInterval(intervalId);
+      }, 1000);
+    }
   }, [materialWeight]);
   // разгрузка бункера
   const onBunkerUnloading = (transferredWeight, maximumLoad) => {
