@@ -21,28 +21,18 @@ const Container = () => {
       }
     });
 
-    interval(weight, stop);
-  };
-  const interval = (item, stop) => {
-    const int = setInterval(() => {
-      setMaterialWeight((prevState) => prevState + item);
-      let i = 100 + item;
-      console.log(i);
-      if (i === 1000) {
-        return clearInterval(int);
-      }
-    }, 2000);
+    // interval(weight, stop);
   };
 
-  // useEffect(() => {
-  //   const weight = 100;
-  //   const intervalId = setInterval(() => {
-  //     setMaterialWeight((prevState) => prevState + weight);
-  //     if (materialWeight === 1000) {
-  //       return clearInterval(intervalId);
-  //     }
-  //   }, 2000);
-  // }, [materialWeight]);
+  useEffect(() => {
+    const weight = 100;
+    const intervalId = setInterval(() => {
+      if (materialWeight < 1000) {
+        setMaterialWeight((prevState) => prevState + weight);
+      }
+      return clearInterval(intervalId);
+    }, 1000);
+  }, [materialWeight]);
   // разгрузка бункера
   const onBunkerUnloading = (transferredWeight, maximumLoad) => {
     if (transferredWeight === maximumLoad) {
