@@ -52,6 +52,7 @@ const Container = () => {
       setMaterialName("");
     }
   }, [materialWeight]);
+  //разгрузка по кнопке
   const onBunkerUnloading = (transferredWeight, maximumLoad) => {
     if (transferredWeight === maximumLoad) {
       data.forEach((el) => (el.btnActive = false));
