@@ -29,6 +29,7 @@ const LoadingHopper = ({ materialWeight, onBunkerUnloading, materialName }) => {
 
       <div className="materialLoading">
         <h1>{materialName}</h1>
+        <span>прогресс загрузки</span>
         <p>
           {transferredWeight}/{maximumLoad}
         </p>

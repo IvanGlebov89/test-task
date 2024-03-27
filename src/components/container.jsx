@@ -11,15 +11,16 @@ const Container = () => {
 
   // блокировка кнопок и загрузка нужного материала
 
-  const onLoadingMaterial = (id, weight, elName, stop) => {
+  const onLoadingMaterial = (id, weight, elName) => {
     setMaterialName(elName);
-    data.forEach((el) => {
-      if (el.id !== id) {
-        return (el.btnActive = true);
-      } else {
-        return (el.btnActive = false);
-      }
-    });
+    setData((prevData) =>
+      prevData.map((d) => {
+        if (d.id !== id) {
+          return { ...d, btnActive: true };
+        }
+        return d;
+      })
+    );
     if (materialWeight < 1000) {
       setMaterialWeight((prevState) => prevState + weight);
     }
@@ -33,7 +34,7 @@ const Container = () => {
           setMaterialWeight((prevState) => prevState + weight);
         }
         return clearInterval(intervalId);
-      }, 500);
+      }, 1000);
     }
   }, [materialWeight]);
   // разгрузка бункера
@@ -48,6 +49,7 @@ const Container = () => {
           return d;
         })
       );
+
       setMaterialWeight(reset);
       setMaterialName("");
     }
